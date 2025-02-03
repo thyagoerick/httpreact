@@ -1,0 +1,217 @@
+::-webkit-scrollbar{
+  width: 0px;
+}
+
+body{
+  color: #ffffff;
+  background-color: #190031;
+}
+h1{
+  font-weight: 700;
+  font-size: 40px;
+}
+p, label, tr {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+
+
+
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin: 0 0 20px 0;
+  padding-top: 40px;
+  z-index: 10;
+}
+
+
+
+
+
+main{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height:50vh; 
+  gap: 20px;
+}
+
+
+
+
+
+div.add-product{
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height:auto;
+}
+div.add-product form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 0 0 0 60%;
+}
+div.add-product form label{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+div.add-product form input{
+  height: 20px;
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 16px;
+  box-shadow: none;
+}
+div.add-product form input[type="submit"] 
+{
+  height: 40px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;  
+  color: #ffffff;
+  background-color: #300160;
+  border-width: 0px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+div.add-product form input[type="submit"]:hover{
+  background-color: #5c318790;
+}
+
+
+
+
+
+div.table-products{
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+div.table-border{
+  border: solid 2px rgb(255, 255, 255);
+  border-radius: 10px;
+  display: flex;
+  width:70%;
+  height: 100%;
+  overflow-y: auto;
+}
+div.table-border table button.edit,
+div.table-border table button.delete
+{
+  width: 50px;
+  height: 50px;
+  padding: 2px;
+  border-radius: 60%;
+  border-width: 0px;
+  cursor: pointer;
+  color: #ffffff;
+}
+div.table-border table button.edit{
+  background: #1BA1D6;
+}
+div.table-border table button.delete{
+  background-color: #FE0000;
+}
+div.table-border table button.edit:hover{
+  background:#ffffff;
+  color:#1BA1D6;
+  transition: 0.5s;
+}
+div.table-border table button.delete:hover{
+  background:#ffffff;
+  color:#FE0000;
+  transition: 0.5s;
+}
+table {
+  display: table;
+  border-radius: 10px;
+  width: 100%;
+  border-collapse: collapse;/*para deixar sem bordas internas*/
+  text-align: center;
+}
+thead {
+  background-color: #FE9000;
+}
+table thead tr th{
+  padding: 15px ;
+}
+table tbody tr td{
+  padding: 10px;
+  height: 50px;
+}
+table tbody tr:hover{
+  background-color: #5c318790;
+  transition: 0.5s;
+}
+table thead tr th:nth-child(1) {
+  border-top-left-radius: 6px;
+}
+table thead tr th:nth-last-child(1){
+  border-top-right-radius: 6px;
+}
+div.table-products > span.aviso-de-scroll{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:20px;
+  padding: 10px;
+  animation: bounce 2.6s infinite ease-out;
+  cursor: help;
+}
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Vai para cima */
+  }
+}
+
+
+@media (width <= 1200px) {
+
+  main{
+    flex-direction: column;
+    height: 100%;
+    gap:25px;
+  }
+
+  nav{
+    padding-top: 20px;
+  }
+
+  div.add-product{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height:auto;
+  }
+  div.add-product form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0;
+  }
+
+  div.table-products{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  div.table-border{
+    margin-left: 70px;
+  }
+}
+
