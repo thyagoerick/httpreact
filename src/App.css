@@ -73,7 +73,8 @@ div.add-product form input{
   font-size: 16px;
   box-shadow: none;
 }
-div.add-product form input[type="submit"] 
+div.add-product form input[type="submit"],
+div.add-product form button 
 {
   height: 40px;
   border-radius: 10px;
@@ -85,7 +86,13 @@ div.add-product form input[type="submit"]
   cursor: pointer;
   margin-top: 10px;
 }
-div.add-product form input[type="submit"]:hover{
+div.add-product form button{
+  cursor:progress;
+  background-color: #5c318790;
+}
+
+div.add-product form input[type="submit"]:hover,
+div.add-product form button:hover {
   background-color: #5c318790;
 }
 
