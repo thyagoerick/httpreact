@@ -16,7 +16,10 @@ export const useFetch = (url) => {
 
     // 7- tratando erros
     const [error, setError] = useState(null)
-
+    
+    
+    const [productId, setProductId] = useState(null)
+ 
     const httpConfig = (data, method) => {        
         if(method === "POST"){
          setConfig({
@@ -26,8 +29,32 @@ export const useFetch = (url) => {
            },
            body: JSON.stringify(data)
          });
-
          setMethod(method);     
+        }
+
+        if(method === "PUT"){
+            setProductId(data?.id)   
+            delete data?.id
+            setConfig({
+              method,
+              headers:{
+                   "Content-Type": "application/json"
+              },
+              body: JSON.stringify(data)
+            });
+            setMethod(method);  
+           }
+
+        if(method === "DELETE"){
+            setConfig({
+              method,
+              headers:{
+                   "Content-Type": "application/json"
+              },
+            // body: JSON.stringify(data)
+            });
+            setProductId(data)
+            setMethod(method);     
         }
     }
 
@@ -56,15 +83,30 @@ export const useFetch = (url) => {
         
         (async()=>{
             if(method === "POST"){
-                let fetchOptions = [url, config]//a ideia é isso ser dinâmico (mas aqui só vou usar caso for POST mesmo)
-
+                let fetchOptions = [url, config]//a ideia é isso ser dinâmico
+                const res = await fetch(...fetchOptions)// aqui que o cadastro é efetuado de fato
+                const str4jsonObj = await res.json()
+                setCallFetch(str4jsonObj) 
+            } else if(method === "PUT" && productId !==  null){
+                let fetchOptions = [`${url}/${productId}`, config]//a ideia é isso ser dinâmico
                 const res = await fetch(...fetchOptions)
                 const str4jsonObj = await res.json()
                 setCallFetch(str4jsonObj)
+
+                setMethod(null)
+                setProductId(null)
+            }
+            else if(method === "DELETE" && productId !==  null){
+                let fetchOptions = [`${url}/${productId}`, config]//a ideia é isso ser dinâmico
+                const res = await fetch(...fetchOptions)
+                const str4jsonObj = await res.json()
+                setCallFetch(str4jsonObj)
+
+                setMethod(null)
+                setProductId(null)
             }
         })();
-
-    },[config, url, method])
+    },[config, url, method, productId])
 
 
 

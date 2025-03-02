@@ -2,28 +2,163 @@
   "products": [
     {
       "id": "1",
-      "name": "Camisa",
-      "price": 59.9
+      "name": "Camiseta branca",
+      "price": 50
     },
     {
       "id": "2",
       "name": "Calça vermelha",
-      "price": 90
+      "price": 90.99
     },
     {
       "id": "3",
-      "name": "Boné aba reta",
-      "price": 29.9
+      "name": "Tênis preto",
+      "price": 120
     },
     {
-      "id": "a16c",
-      "name": "Feijão",
-      "price": "5"
+      "id": "5",
+      "name": "Boné azul",
+      "price": 35
     },
     {
-      "id": "946b",
-      "name": "Arroz",
-      "price": "30"
+      "id": "6",
+      "name": "Meias esportivas",
+      "price": 15
+    },
+    {
+      "id": "7",
+      "name": "Jaqueta de couro",
+      "price": 250
+    },
+    {
+      "id": "8",
+      "name": "Relógio inteligente",
+      "price": 300
+    },
+    {
+      "id": "9",
+      "name": "Óculos de sol",
+      "price": 80
+    },
+    {
+      "id": "10",
+      "name": "Mochila escolar",
+      "price": 70
+    },
+    {
+      "id": "11",
+      "name": "Caneta esferográfica",
+      "price": "2"
+    },
+    {
+      "id": "12",
+      "name": "Caderno universitário",
+      "price": 20
+    },
+    {
+      "id": "13",
+      "name": "Fone de ouvido sem fio",
+      "price": 150
+    },
+    {
+      "id": "14",
+      "name": "Carregador portátil",
+      "price": 60
+    },
+    {
+      "id": "15",
+      "name": "Garrafa térmica",
+      "price": 40
+    },
+    {
+      "id": "16",
+      "name": "Cadeira de praia",
+      "price": 55
+    },
+    {
+      "id": "17",
+      "name": "Guarda-chuva",
+      "price": 25
+    },
+    {
+      "id": "18",
+      "name": "Livro de ficção",
+      "price": 30
+    },
+    {
+      "id": "19",
+      "name": "Vela aromática",
+      "price": "15"
+    },
+    {
+      "id": "20",
+      "name": "Cafeteira elétrica",
+      "price": 200
+    },
+    {
+      "id": "21",
+      "name": "Panela de pressão",
+      "price": 180
+    },
+    {
+      "id": "22",
+      "name": "Toalha de banho",
+      "price": 45
+    },
+    {
+      "id": "23",
+      "name": "Escova de cabelo",
+      "price": 12
+    },
+    {
+      "id": "24",
+      "name": "Perfume",
+      "price": 120
+    },
+    {
+      "id": "25",
+      "name": "Creme hidratante",
+      "price": "25"
+    },
+    {
+      "id": "26",
+      "name": "Bola de futebol",
+      "price": 50
+    },
+    {
+      "id": "27",
+      "name": "Raquete de tênis",
+      "price": 90
+    },
+    {
+      "id": "28",
+      "name": "Bicicleta ergométrica",
+      "price": 600
+    },
+    {
+      "id": "29",
+      "name": "Tapete de yoga",
+      "price": 40
+    },
+    {
+      "id": "30",
+      "name": "Kit de maquiagem",
+      "price": 150
+    },
+    {
+      "name": "Sabão Líquido",
+      "price": "20",
+      "id": "4a19"
+    },
+    {
+      "name": "Sabão em Barra",
+      "price": "10.99",
+      "id": "c606"
+    },
+    {
+      "id": "30b7",
+      "name": "Tenis",
+      "price": "500"
     }
   ]
 }

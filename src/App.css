@@ -96,7 +96,15 @@ div.add-product form button:hover {
   background-color: #5c318790;
 }
 
-
+.qtdProdutos{
+  text-align:center;
+  text-transform: capitalize;
+  background-color:#FFD30F;
+  color: #300160;
+  font-weight: 700;
+  padding: 3px;
+  border-radius: 50px;
+}
 
 
 
@@ -113,9 +121,13 @@ div.table-border{
   height: 100%;
   overflow-y: auto;
 }
+
 div.table-border table button.edit,
 div.table-border table button.delete
 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50px;
   height: 50px;
   padding: 2px;
@@ -140,6 +152,17 @@ div.table-border table button.delete:hover{
   color:#FE0000;
   transition: 0.5s;
 }
+div.table-border table button.edit i.pi-pencil, div.table-border table button.delete i.pi-trash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div.table-border table span {
+  display: flex;
+  justify-content: center;
+}
+
+
 table {
   display: table;
   border-radius: 10px;
@@ -196,6 +219,7 @@ div.table-products > span.aviso-de-scroll{
 
   nav{
     padding-top: 20px;
+    text-align: center;
   }
 
   div.add-product{
@@ -219,6 +243,51 @@ div.table-products > span.aviso-de-scroll{
   }
   div.table-border{
     margin-left: 70px;
+    height: 30vh;
+
   }
 }
 
+
+@media (width <= 650px) {
+
+  div.table-products th,
+  div.table-products td
+  {
+    font-size: 12px;
+    padding: 12px;
+
+  }
+
+  div.table-border table button.edit, div.table-border table button.delete {
+    width: 30px;
+    height: 30px;
+  }
+
+  div.table-border table button.edit i.pi-pencil, div.table-border table button.delete i.pi-trash {
+    font-size: 1rem !important;
+  }
+}
+
+@media (width <= 430px) {
+  div.table-products th,
+  div.table-products td
+  {
+    font-size: 10px;
+    padding: 10px;
+  }
+
+  div.table-border{
+    width: 75%;
+    margin-left: 35px;
+  }
+
+  div.table-border table button.edit, div.table-border table button.delete {
+    width: 20px;
+    height: 20px;
+  }
+
+  div.table-border table button.edit i.pi-pencil, div.table-border table button.delete i.pi-trash {
+    font-size: 0.5rem !important;
+  }
+}

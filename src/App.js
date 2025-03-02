@@ -18,61 +18,80 @@ function App() {
   const [nome, setNome] = useState("")
   const [preco, setPreco] = useState("")
 
-  // - 1 resgatando dados
-  // useEffect(() => {async function fetchData() {
-  //     const res = await fetch(url)// resposta em json, texto puro
-  //     const data = await res.json() // converte pra objeto para permitir iteração em lista
-  //     setProducts(data)
-  //   }
-  //   fetchData();
-  // },[])
-
-// 2 - adição de produtos
-const handleSubmit = async (e) => {
+  const [productId, setProductId] = useState(null)
+  const [editar, setEditar] = useState(false)
 
 
-  e.preventDefault();
-
-  const product = {
-      name: nome,
-      price: preco,
+  
+  const limpar = () => {
+    setNome('');
+    setPreco('');
+  }
+  const limparEsair = () =>{
+    limpar();
+    setEditar(false)
   }
 
-  // const res = await fetch(url, {
-  //     method: "POST",
-  //     headers:{
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(product),
-  // })
-
-  // //3 - carregamento dinâmico
-  // const addedProduct = await res.json(); // nesse caso retransforma em um obj js
-  // /* 
-  //   Ao receber:
-  //     .json() é usado pra converter respostas de requisições HTTP.
-  //   No envio:
-  //     JSON.stringfy e JSON.parse() são usados geralmente quando a gente trabalha com localStorage, onde o primeiro transforma um objeto em json, pode ser usado em requisições também, e o segundo faz o contrário.
-  // */
-  // setProducts((prevProducts) => [ ...prevProducts, addedProduct])
+  const deleteProduct = async (id) => {
+    httpConfig(id,"DELETE")
+    setProductId(null)
+  };
   
+  const editProduct = async (id) =>{
+      setEditar(true)
+      setProductId(id)
+      const res = await fetch(`${url}/${id}`)
+      const productSought = await res.json()
+      setNome(productSought?.name)      
+      setPreco(productSought?.price)
+  }
 
-  // 5 - refatorando post
-  
-  httpConfig(product,"POST")
+  // 2 - adição de produtos
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  setNome('');
-  setPreco('');
-} 
+   const product = {
+    ...(editar && { 'id': productId }), // Adiciona o ID apenas se `editar` for true
+    name: nome,
+    price: preco,
+  };
+
+    // const res = await fetch(url, {
+    //     method: "POST",
+    //     headers:{
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(product),
+    // })
+
+    // //3 - carregamento dinâmico
+    // const addedProduct = await res.json(); // nesse caso retransforma em um obj js
+    // /* 
+    //   Ao receber:
+    //     .json() é usado pra converter respostas de requisições HTTP.
+    //   No envio:
+    //     JSON.stringfy e JSON.parse() são usados geralmente quando a gente trabalha com localStorage, onde o primeiro transforma um objeto em json, pode ser usado em requisições também, e o segundo faz o contrário.
+    // */
+    // setProducts((prevProducts) => [ ...prevProducts, addedProduct])
+    
+
+    // 5 - refatorando post
+    editar
+      ? (()=>{
+        httpConfig(product,"PUT")
+        setEditar(false)
+        })()
+      : httpConfig(product,"POST")
+      
+      limpar();
+  } 
 
   return (
-    <div className="App">
-     
+    (<div className="App">
       <nav>
         <img src="logo.png" alt="Imagem de Mercadinho" width={80} height={80}/>
         <h1>CRUD de Produtos</h1>
       </nav>
-
       <main>
         <div className='add-product'>
           <form onSubmit={handleSubmit}>
@@ -88,17 +107,22 @@ const handleSubmit = async (e) => {
                 ? (<button disabled>
                     <i className="pi pi-spin pi-spinner" style={{ fontSize: '1.8rem' }}></i>
                   </button>)
-                : (<input type="submit" value="CADASTRAR"/>)
-            }
-            
-            
+                : editar 
+                    ? (<>
+                      <input type="submit" value="EDITAR"/>
+                      <button onClick={()=>limparEsair()}>CANCELAR</button>
+                    </>)
+                    : (<>
+                      <input type="submit" value="CADASTRAR"/>
+                      <h4 className='qtdProdutos'>{items?.length} produtos cadastrados</h4>
+                    </>)
+            }         
           </form>
         </div>
 
         <div className='table-products'>
           <div className="table-border">
-            <table>
-             
+            <table>   
               <thead>
                 <tr>
                   <th scope="col">Produto</th>
@@ -113,7 +137,7 @@ const handleSubmit = async (e) => {
                     <td colSpan={4}>
                       <span style={{display:'flex', flexDirection:'row', alignItems:'center',justifyContent:'center', padding:10, gap:15}}>
                         <i className="pi pi-spin pi-spinner" style={{ fontSize: '2rem' }}></i>
-                        <p>Cargando...</p>
+                        <p>Carregando...</p>
                       </span>
                     </td> 
                   </tr>
@@ -131,20 +155,28 @@ const handleSubmit = async (e) => {
                 }
 
                 {!error && (items && items.map((p) => ( // items &&  -> essa parte faz com que só itere o com o map se existir itens
-                  <tr key={p.id}>
+                  (<tr key={p.id}>
                     <td>{p.name}</td>
                     <td>R${Number(p.price).toFixed(2).replace('.', ',')}</td>
                     <td>
-                      <button className='edit' title='Editar Produto'>
-                        <i className="pi pi-pencil" style={{ fontSize: '1.5rem' }}></i>
-                      </button>
+                      <span>
+                        <button className='edit' title='Editar Produto' onClick={()=> {
+                            editProduct(p.id)
+                          }}>
+                          <i className="pi pi-pencil" style={{ fontSize: '1.5rem' }}></i>
+                        </button>
+                      </span>
                     </td>
                     <td>
-                      <button className='delete' title='Deletar Produto'>
-                        <i className="pi pi-trash" style={{ fontSize: '1.5rem' }}></i>
-                      </button>
+                      <span>
+                        <button className='delete' title='Deletar Produto' onClick={() => {
+                            deleteProduct(p.id)
+                          }}>
+                          <i className="pi pi-trash" style={{ fontSize: '1.5rem' }}></i>
+                        </button>
+                      </span>
                     </td>
-                  </tr>
+                  </tr>)
                 )))}
               </tbody>
             </table>
@@ -156,7 +188,7 @@ const handleSubmit = async (e) => {
           </span>
         </div>
       </main>
-    </div>
+    </div>)
   );
 }
 
