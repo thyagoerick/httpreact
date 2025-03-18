@@ -154,7 +154,7 @@ function App() {
                   )
                 }
 
-                {!error && (items && items.map((p) => ( // items &&  -> essa parte faz com que só itere o com o map se existir itens
+                {!error && (items?.map((p) => ( // items &&  -> essa parte faz com que só itere o com o map se existir itens // melhor usar items?. que verifica se items não é nulo direto
                   (<tr key={p.id}>
                     <td>{p.name}</td>
                     <td>R${Number(p.price).toFixed(2).replace('.', ',')}</td>

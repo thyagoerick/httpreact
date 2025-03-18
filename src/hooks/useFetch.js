@@ -28,6 +28,10 @@ export const useFetch = (url) => {
                 "Content-Type": "application/json"
            },
            body: JSON.stringify(data)
+           /*
+                JSON.stringify(obj): Converte um objeto JavaScript em uma string JSON.
+                obj.json(): Converte uma resposta HTTP (do tipo Response) em um objeto JavaScript.
+           */
          });
          setMethod(method);     
         }
@@ -41,6 +45,11 @@ export const useFetch = (url) => {
                    "Content-Type": "application/json"
               },
               body: JSON.stringify(data)
+              /*
+                JSON.stringify(obj): Converte um objeto JavaScript em uma string JSON. Faz o processo de serialização
+
+                obj.json(): Converte uma resposta HTTP (do tipo Response) em um objeto JavaScript. Faz o processo de desserialização
+              */
             });
             setMethod(method);  
            }
@@ -51,7 +60,7 @@ export const useFetch = (url) => {
               headers:{
                    "Content-Type": "application/json"
               },
-            // body: JSON.stringify(data)
+            // DELETE não precisa passar o body
             });
             setProductId(data)
             setMethod(method);     
@@ -85,7 +94,7 @@ export const useFetch = (url) => {
             if(method === "POST"){
                 let fetchOptions = [url, config]//a ideia é isso ser dinâmico
                 const res = await fetch(...fetchOptions)// aqui que o cadastro é efetuado de fato
-                const str4jsonObj = await res.json()
+                const str4jsonObj = await res.json()//obj.json(): Converte uma resposta HTTP (do tipo Response) em um objeto JavaScript.
                 setCallFetch(str4jsonObj) 
             } else if(method === "PUT" && productId !==  null){
                 let fetchOptions = [`${url}/${productId}`, config]//a ideia é isso ser dinâmico

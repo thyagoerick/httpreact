@@ -126,39 +126,14 @@
       "price": 50
     },
     {
-      "id": "27",
-      "name": "Raquete de tênis",
-      "price": 90
-    },
-    {
       "id": "28",
       "name": "Bicicleta ergométrica",
       "price": 600
     },
     {
-      "id": "29",
-      "name": "Tapete de yoga",
-      "price": 40
-    },
-    {
       "id": "30",
       "name": "Kit de maquiagem",
       "price": 150
-    },
-    {
-      "name": "Sabão Líquido",
-      "price": "20",
-      "id": "4a19"
-    },
-    {
-      "name": "Sabão em Barra",
-      "price": "10.99",
-      "id": "c606"
-    },
-    {
-      "id": "30b7",
-      "name": "Tenis",
-      "price": "500"
     }
   ]
 }
